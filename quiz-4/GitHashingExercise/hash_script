@@ -1,0 +1,14 @@
+#!/bin/bash
+#Ask for input
+read -p "Enter a 4 digit integer:" input
+#Chech input
+if ! [[ $input =~ ^[0-9]{4}$ ]]; then
+    echo "Please give a 4 digit integer."
+    exit 1
+fi
+#Compute hash
+hash=$(echo -n "$input" | sha256sum | awk '{print $1}')
+echo "$hash" > hash_output.txt
+#End message
+echo "Hash saved"
+
